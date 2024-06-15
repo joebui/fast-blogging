@@ -1,0 +1,14 @@
+version: "3"
+
+tasks:
+  up:
+    cmd: docker compose up -d
+  lint:
+    cmd: ruff check src/
+  fix:
+    cmd: ruff check src/ --fix
+  migrate:
+    cmd: ./migrations/migrate.sh
+  dev:
+    desc: run fastapi locally
+    cmd: export $(cat .env | xargs) && fastapi dev src/main.py
