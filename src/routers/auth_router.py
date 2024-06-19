@@ -2,7 +2,7 @@ from typing import Annotated
 from fastapi import APIRouter, Depends, HTTPException
 from fastapi.security import OAuth2PasswordRequestForm
 from custom_types.requests import RegisterRequestBody
-from custom_types.responses import Token
+from custom_types.responses import TokenResponse
 from services.users_service import UsersService
 
 
@@ -22,7 +22,7 @@ async def authenticate(
         OAuth2PasswordRequestForm, Depends()
     ],
     svc: UsersService = Depends(),
-) -> Token:
+) -> TokenResponse:
     current_user = svc.get_user_by_name(form_data.username)
     if not current_user:
         raise HTTPException(
@@ -42,4 +42,4 @@ async def authenticate(
         {"id": current_user.id, "name": current_user.name}
     )
 
-    return {"access_token": token, "token_type": "Bearer"}
+    return {"acces_token": token, "token_type": "Bearer"}

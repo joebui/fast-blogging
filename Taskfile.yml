@@ -2,12 +2,16 @@ version: "3"
 
 tasks:
   up:
+    desc: start db
     cmd: docker compose up -d
   lint:
+    desc: ruff lint
     cmd: ruff check src/
   fix:
+    desc: ruff fix
     cmd: ruff check src/ --fix
   migrate:
+    desc: db migration
     cmd: ./migrations/migrate.sh
   dev:
     desc: run fastapi locally
