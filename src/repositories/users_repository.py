@@ -1,5 +1,4 @@
 from fastapi import Depends
-from sqlalchemy import insert
 from sqlalchemy.orm import Session
 from configs.database import get_db_connection
 from models.user_model import User
